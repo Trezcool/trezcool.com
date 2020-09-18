@@ -4,11 +4,3 @@
     <p>Hold tight! Trezcool is cooking something...</p>
   </Layout>
 </template>
-
-<script>
-export default {
-  metaInfo: {
-    title: 'Trezcool'
-  }
-}
-</script>
