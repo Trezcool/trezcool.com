@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <h1>About me</h1>
-    <p>You will know all about Trezcool soon...</p>
+    <p>You will know all about <strong>Trezcool</strong> soon...</p>
   </Layout>
 </template>
 

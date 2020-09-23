@@ -6,5 +6,32 @@
 
 module.exports = {
   siteName: 'Trezcool',
-  plugins: []
+  siteDescription: "Trésor Kambembo's Portfolio.",
+  siteUrl: 'https://trezcool.com',
+  plugins: [
+    {
+      use: '@gridsome/source-filesystem',
+      options: {
+        typeName: 'Post',
+        path: 'blog/**/*.md',
+        refs: {
+          tags: {
+            typeName: 'Tag',
+            create: true
+          }
+        }
+      }
+    }
+  ],
+  templates: {
+    Post: '/blog/:year/:month/:title',
+    Tag: '/tag/:id'
+  },
+  transformers: {
+    remark: {
+      plugins: [
+        [ 'gridsome-plugin-remark-shiki', { skipInline: true } ]
+      ],
+    },
+  },
 }

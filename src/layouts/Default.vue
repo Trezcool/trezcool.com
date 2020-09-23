@@ -1,15 +1,21 @@
 <template>
   <div class="layout">
+
     <header class="header">
-      <strong>
-        <g-link to="/">{{ $static.metadata.siteName }}</g-link>
-      </strong>
+      <span class="logo">
+        <g-link to="/"> > $ cd /home/trezcool </g-link>
+      </span>
+
       <nav class="nav">
-        <g-link class="nav__link" to="/">Home</g-link>
         <g-link class="nav__link" to="/about/">About</g-link>
+        <g-link class="nav__link" to="/portfolio/">Portfolio</g-link>
+        <g-link class="nav__link" to="/contact/">Contact</g-link>
+        <g-link class="nav__link" to="/blog/">Blog</g-link>
       </nav>
     </header>
+
     <slot/>
+
   </div>
 </template>
 
