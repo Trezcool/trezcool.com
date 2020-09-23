@@ -2,9 +2,12 @@
   <div class="layout">
 
     <header class="header">
-      <span class="logo">
-        <g-link to="/"> > $ cd /home/trezcool </g-link>
-      </span>
+      <g-link to="/">
+        <div class="logo">
+          <span class="logo__text">> $ cd /home/trezcool</span>
+          <span class="logo__cursor"></span>
+        </div>
+      </g-link>
 
       <nav class="nav">
         <g-link class="nav__link" to="/about/">About</g-link>
