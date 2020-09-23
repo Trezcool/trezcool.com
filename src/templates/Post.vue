@@ -28,12 +28,12 @@
 <!--}-->
 <!--</page-query>-->
 
-<script>
-export default {
-  metaInfo() {
-    return {
-      title: this.$page.post.title
-    }
-  }
-}
-</script>
+<!--<script>-->
+<!--export default {-->
+<!--  metaInfo() {-->
+<!--    return {-->
+<!--      title: this.$page.post.title-->
+<!--    }-->
+<!--  }-->
+<!--}-->
+<!--</script>-->

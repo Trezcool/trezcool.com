@@ -1,7 +1,7 @@
 body {
     background-color: #1E272E;
     color: #D1C1A8;
-    font-family: Alegreya !important;
+    font-family: Alegreya, sans-serif !important;
     font-size: 17px;
 }
 
@@ -11,5 +11,5 @@ a {
 }
 
 .logo {
-    font-family: "Gill Sans";
+    font-family: "Gill Sans", sans-serif;
 }
