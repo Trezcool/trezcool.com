@@ -1,6 +1,6 @@
 <template>
-  <div class="custom">
-    <div class="custom-shape-divider-top-1601172894">
+  <div class="layout-wrapper" :class="theme">
+    <div class="header-shape-divider">
       <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
         <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
       </svg>
@@ -8,7 +8,7 @@
 
     <div class="layout">
       <header class="header">
-        <g-link to="/">
+        <g-link to="/" class="logo__link">
           <div class="logo">
             <span class="logo__text">> $ cd /home/trezcool</span>
             <span class="logo__cursor"></span>
@@ -16,6 +16,14 @@
         </g-link>
 
         <nav class="nav">
+          <!-- FIXME: fix Theme Switcher SVGs positions -->
+          <a href="#" class="nav__link them-switcher" @click.prevent="toggleTheme">
+<!--            <svg v-if="theme === 'theme&#45;&#45;light'" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>-->
+            <svg v-if="theme === 'theme--light'" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+<!--            <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>-->
+            <svg v-else xmlns="http://www.w3.org/2000/svg" class="them-switcher__svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          </a>
+
           <g-link class="nav__link" to="/about/">About</g-link>
           <g-link class="nav__link" to="/portfolio/">Portfolio</g-link>
           <g-link class="nav__link" to="/contact/">Contact</g-link>
@@ -26,11 +34,11 @@
       <slot/>
 
       <footer>
-        <p class="footer__copyright">© 2020 • Trésor Kambembo</p>
+        <p class="footer__copyright">© {{ year }} • Trésor Kambembo</p>
       </footer>
     </div>
 
-    <div class="custom-shape-divider-bottom-1601175391">
+    <div class="footer-shape-divider">
       <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
 <!--        <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>-->
 <!--        <path d="M649.97 0L599.91 54.12 550.03 0 0 0 0 120 1200 120 1200 0 649.97 0z" class="shape-fill"></path>-->
@@ -48,158 +56,24 @@ query {
 }
 </static-query>
 
-<style>
-.custom {
-  position: relative;
-  /*z-index: -10;*/
-}
-/** ---------- Header Divider ---------- **/ /* TODO: animate */
-.custom-shape-divider-top-1601172894 {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
-  transform: rotate(180deg);
-  z-index: -1;
-}
-.custom-shape-divider-top-1601172894 svg {
-  position: relative;
-  display: block;
-  width: calc(127% + 1.3px);
-  height: 13rem;
-}
-.custom-shape-divider-top-1601172894 .shape-fill {
-  fill: #181F24;
-  /*fill: #1F282E;*/
-  /*fill: #1E272E;*/
-  /*animation: svganim 50s infinite forwards;*/
-}
-@media (max-width: 767px) {  /** For mobile devices **/
-  .custom-shape-divider-top-1601172894 svg {
-    width: calc(127% + 1.3px);
-    height: 10.6rem;
+<script>
+export default {
+  mounted() {
+    this.theme = localStorage.getItem('theme') || 'theme--dark'
+  },
+  data() {
+    return {
+      theme: '',
+      year: new Date().getFullYear()
+    }
+  },
+  methods: {
+    toggleTheme() {
+      this.theme = this.theme === 'theme--dark' ? 'theme--light' : 'theme--dark'
+      localStorage.setItem('theme', this.theme)
+    }
   }
 }
-@keyframes svganim {
-  0% { d: path("M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"); }
-  50% { d: path("M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"); }
-  100% { d: path("M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"); }
-}
+</script>
 
-/** ---------- Footer Divider ---------- **/ /* TODO: animate */
-.custom-shape-divider-bottom-1601175391 {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
-  z-index: -1;
-}
-.custom-shape-divider-bottom-1601175391 svg {
-  position: relative;
-  display: block;
-  width: calc(127% + 1.3px);
-  height: 7rem;
-}
-.custom-shape-divider-bottom-1601175391 .shape-fill {
-  fill: #181F24;
-}
-@media (max-width: 767px) {  /** For mobile devices **/
-  .custom-shape-divider-bottom-1601175391 svg {
-    width: calc(127% + 1.3px);
-    height: 6.2rem;
-  }
-}
-
-
-/* ------- Base ------- */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-html {
-  font: 62.5% Georgia, serif;  /* 10px (default) */
-}
-
-body {
-  /* TODO: self-host Google's "Alegreya" font */
-  font-family: Alegreya, -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-  font-size: 1.8rem;
-  background-color: #1E272E;
-  /*background-color: #0A1E29;*/
-  /*background-color: #091B25;*/
-  /*background-image: linear-gradient(to right, #1E272E 0%, #33424D 100%);*/
-  color: #D1C1A8;
-  line-height: 1.5;
-  min-height: 100%;
-}
-
-img {
-  display: block;
-  max-width: 100%;
-}
-
-.layout {
-  height: 100vh;
-  max-width: 76rem;
-  margin: 0 auto;
-  padding-left: 2rem;
-  padding-right: 2rem;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
-  height: 8rem;
-}
-
-.nav__link {
-  margin-left: 2rem;
-}
-.nav__link, a {
-  color: #D1C1A8;
-  text-decoration: none;
-}
-
-/* ------- Logo ------- */
-.logo {
-  font-family: "Gill Sans", sans-serif;
-}
-.logo__text {
-}
-.logo__cursor {
-  display: inline-block;
-  width: 0.8rem;
-  height: 1.25rem;
-  background: #fe5186;
-  margin-left: 0.5rem;
-  border-radius: 0.1rem;
-  animation: cursor 1s infinite;
-}
-@keyframes cursor {
-  0% { opacity: 0; }
-  50% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
-footer {
-  position: fixed;
-  height: 5rem;
-  width: 76rem;
-  bottom: 0;
-  margin-bottom: 0;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.footer__copyright {
-  font-size: 1.4rem;
-}
-</style>
+<style src="../assets/css/main.css" />

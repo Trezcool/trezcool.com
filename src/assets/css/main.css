@@ -1,0 +1,207 @@
+/** --------------------------------------------------- Theming ---------------------------------------------------- **/
+:root {
+    /* DARK THEME */
+    /* YES */
+    --bg-primary-dark: #1E272E;
+    --text-primary-dark: #D1C1A8;
+    --text-secondary-dark: #fe5186;
+    --divider-fill-primary-dark: #181F24;
+
+    /*--bg-primary-dark: #19333E;*/
+    /*--text-primary-dark: #e7d9d4;*/
+    /*--divider-fill-primary-dark: #152832;*/
+
+    /* LIGHT THEME */
+    /* YES */
+    --bg-primary-light: #eae5e1;
+    --text-primary-light: #3c4762;
+    /*--text-primary-light: #03686f;*/
+    --text-secondary-light: #20C5AD;
+    --divider-fill-primary-light: #C8BEB6;
+
+    /*--bg-primary-light: #c9c4d5;*/
+    /*--text-primary-light: #3c4762;*/
+    /*--text-secondary-light: #00A39B;*/
+    /*--divider-fill-primary-light: #ABA3BD;*/
+
+    /*--bg-primary-light: #d8e1e5;*/
+    /*--text-primary-light: #05619b;*/
+    /*--text-secondary-light: #00A39B;*/
+    /*--divider-fill-primary-light: #ACC0C8;*/
+}
+.theme--dark {
+    --bg-primary: var(--bg-primary-dark);
+    --text-primary: var(--text-primary-dark);
+    --text-secondary: var(--text-secondary-dark);
+    --divider-fill-primary: var(--divider-fill-primary-dark);
+}
+.theme--light {
+    --bg-primary: var(--bg-primary-light);
+    --text-primary: var(--text-primary-light);
+    --text-secondary: var(--text-secondary-light);
+    --divider-fill-primary: var(--divider-fill-primary-light);
+}
+
+/** ----------------------------------------------------- Base ----------------------------------------------------- **/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font: 62.5% Georgia, serif;  /* 10px (default) */
+}
+
+body {
+    /* TODO: self-host Google's "Alegreya" font */
+    font-family: Alegreya, -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    font-size: 1.8rem;
+    line-height: 1.5;
+    min-height: 100%;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+.layout-wrapper {
+    position: relative;
+    background-color: var(--bg-primary);
+    /*background-color: #0A1E29;*/
+    /*background-color: #091B25;*/
+    /*background-image: linear-gradient(to right, #1E272E 0%, #33424D 100%);*/
+    color: var(--text-primary);
+}
+.layout {
+    height: 100vh;
+    max-width: 76rem;
+    margin: 0 auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+/** ---------------------------------------------------- Header ---------------------------------------------------- **/
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    height: 8rem;
+}
+.header-shape-divider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+.header-shape-divider svg {
+    position: relative;
+    display: block;
+    width: calc(127% + 1.3px);
+    height: 13rem;
+}
+.header-shape-divider .shape-fill {
+    fill: var(--divider-fill-primary);
+    /*fill: #1F282E;*/
+    /*fill: #1E272E;*/
+    /*animation: svganim 50s infinite forwards;*/
+}
+@media (max-width: 767px) {  /** For mobile devices **/
+    .header-shape-divider svg {
+        width: calc(127% + 1.3px);
+        height: 10.6rem;
+    }
+}
+@keyframes svganim { /* TODO: animate */
+    0% { d: path("M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"); }
+    50% { d: path("M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"); }
+    100% { d: path("M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"); }
+}
+
+/** -------------------------------------------------- Navigation -------------------------------------------------- **/
+nav {
+    z-index: 1;
+}
+.nav__link {
+    margin-left: 2rem;
+}
+.nav__link, a {
+    color: var(--text-primary);
+    text-decoration: none;
+}
+.them-switcher {
+    /*border: red solid 1px;*/
+    /*z-index: 1;*/
+}
+.them-switcher__svg {
+    padding-top: 2px;
+    /*position: relative;*/
+    /*left: 50%;*/
+}
+
+/** ----------------------------------------------------- Logo ----------------------------------------------------- **/
+.logo {
+    font-family: "Gill Sans", sans-serif;
+}
+.logo__link {
+    z-index: 1;
+}
+.logo__text { }
+.logo__cursor {
+    display: inline-block;
+    width: 0.8rem;
+    height: 1.25rem;
+    background: var(--text-secondary);
+    margin-left: 0.5rem;
+    border-radius: 0.1rem;
+    animation: cursor 1s infinite;
+}
+@keyframes cursor {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/** ---------------------------------------------------- Footer ---------------------------------------------------- **/
+footer {
+    position: fixed;
+    height: 5rem;
+    width: 76rem;
+    bottom: 0;
+    margin-bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+.footer__copyright {
+    font-size: 1.4rem;
+}
+.footer-shape-divider {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+.footer-shape-divider svg {
+    position: relative;
+    display: block;
+    width: calc(127% + 1.3px);
+    height: 7rem;
+}
+.footer-shape-divider .shape-fill {
+    fill: var(--divider-fill-primary);
+}
+@media (max-width: 767px) {  /** For mobile devices **/
+    .footer-shape-divider svg {
+        width: calc(127% + 1.3px);
+        height: 6.2rem;
+    }
+}
